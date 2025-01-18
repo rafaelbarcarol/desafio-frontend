@@ -1,0 +1,96 @@
+$primary-color: #f3aa9b;
+
+.banner {
+  &__cta {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+
+    .cta-button {
+      padding: 10px 20px;
+      background-color: #ff6f61;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #e65c50;
+      }
+    }
+  }
+
+  .slick-slider {
+    .slick-dots {
+      bottom: 20px;
+      display: flex;
+      justify-content: center;
+      padding: 0;
+
+      li {
+        margin: 0;
+
+        button {
+          background-color: transparent;
+          border: none;
+          padding: 0;
+          cursor: pointer;
+          width: 20px;
+          height: 20px;
+
+          &::before {
+            content: none;
+          }
+        }
+      }
+    }
+
+    .slick-active .custom-dot .circle {
+      background-color: #8a8a8a;
+    }
+  }
+
+  &__content {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: $primary-color;
+    padding: 5vh 15vh;
+
+    &__left,
+    &__right {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+    }
+
+    &__right {
+      height: 70%;
+
+      img {
+        height: 100%;
+      }
+    }
+  }
+
+  .custom-dot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .circle {
+      width: 6px;
+      height: 6px;
+      background-color: #fff;
+      border-radius: 50%;
+      transition: background-color 0.3s ease;
+    }
+  }
+}
