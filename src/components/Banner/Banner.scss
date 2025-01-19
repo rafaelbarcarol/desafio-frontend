@@ -1,6 +1,7 @@
 $primary-color: #f3aa9b;
 
 .banner {
+  overflow: hidden;
   &__cta {
     position: absolute;
     bottom: 40px;
