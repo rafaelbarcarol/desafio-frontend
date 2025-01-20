@@ -1,7 +1,8 @@
-.products {
+.news {
   overflow: hidden;
   padding: 48px 80px 56px 80px;
   position: relative;
+  background: #f7f7f7;
 
   .slick-slider {
     .slick-track {
@@ -62,26 +63,44 @@
   }
 
   &__item {
+    display: flex !important;
+    flex-direction: column;
+    gap: 20px;
+    border: none;
     outline: none;
     &__image {
       background: #f7f7f7;
       padding: 10px;
       width: 100%;
+      margin-bottom: 4px;
     }
+    &__text {
+      font-family: Open Sans;
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 18.78px;
+      text-align: left;
+      text-underline-position: from-font;
+      text-decoration-skip-ink: none;
+      &.title {
+        font-size: 22px;
+        font-weight: 400;
+        line-height: 38.13px;
+        color: #1d1d1d;
+      }
 
-    &__price {
-      &.flex {
-        display: flex;
-        align-items: center;
-      }
-      &--discount {
-        color: #8a8a8a;
-        text-decoration: line-through;
-        margin-right: 8px;
-        font-size: 12px;
-      }
-      &--original {
+      &.subtitle {
         font-size: 16px;
+        line-height: 21.79px;
+        color: #8a8a8a;
+      }
+
+      &.cta {
+        font-family: Raleway;
+        line-height: 18.78px;
+        text-decoration-line: underline;
+        text-decoration-style: solid;
+        color: #1d1d1d;
       }
     }
   }

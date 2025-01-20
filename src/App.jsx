@@ -4,6 +4,7 @@ import Banner from "./components/Banner/Banner";
 import Categories from "./components/Categories/Categories";
 import Concept from "./components/Concept/Concept";
 import Products from "./components/Products/Products";
+import News from "./components/News/News";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Categories />
       <Concept />
       <Products />
+      <News />
     </div>
   );
 }
