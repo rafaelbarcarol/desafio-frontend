@@ -5,6 +5,7 @@ import Categories from "./components/Categories/Categories";
 import Concept from "./components/Concept/Concept";
 import Products from "./components/Products/Products";
 import News from "./components/News/News";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Concept />
       <Products />
       <News />
+      <Footer />
     </div>
   );
 }
