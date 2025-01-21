@@ -1,0 +1,97 @@
+.header {
+  position: fixed;
+  top: 0;
+  z-index: 3;
+  width: 100%;
+
+  &__upper {
+    height: 40px;
+    background: #b11b26;
+
+    &__localization {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      gap: 8px;
+      color: #fff;
+    }
+  }
+
+  &__lower {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 24px 80px;
+    transition: 0.3s all ease;
+
+    &.scrolling {
+      background: #b11b26;
+    }
+  }
+
+  &__left,
+  &__right {
+    &__list {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      list-style: none;
+    }
+  }
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+
+    &__products {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      .open-products {
+        color: #fff;
+      }
+    }
+
+    &__link {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 19.07px;
+      text-decoration: none;
+      color: #fff;
+
+      &.outlet {
+        color: #b11b26;
+      }
+    }
+
+    &__list {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+  }
+
+  &__right {
+    &__list {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+
+      .shopping {
+        position: relative;
+
+        .number {
+          position: absolute;
+          top: 0;
+          right: -17.5px;
+          color: #fff;
+        }
+      }
+    }
+  }
+}

@@ -6,10 +6,12 @@ import Concept from "./components/Concept/Concept";
 import Products from "./components/Products/Products";
 import News from "./components/News/News";
 import Footer from "./components/Footer/Footer";
+import Header from "./components/Header/Header";
 
 function App() {
   return (
     <div className="App">
+      <Header />
       <Banner />
       <Categories />
       <Concept />
