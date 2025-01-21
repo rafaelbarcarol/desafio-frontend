@@ -8,12 +8,14 @@ import News from "./components/News/News";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import MobileHeader from "./components/MobileHeader/MobileHeader";
+import MobileBanner from "./components/MobileBanner/MobileBanner";
 
 function App() {
   return (
     <div className="App">
       <Header />
       <MobileHeader />
+      <MobileBanner />
       <Banner />
       <Categories />
       <Concept />
