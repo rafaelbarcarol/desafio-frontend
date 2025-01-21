@@ -7,11 +7,13 @@ import Products from "./components/Products/Products";
 import News from "./components/News/News";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
+import MobileHeader from "./components/MobileHeader/MobileHeader";
 
 function App() {
   return (
     <div className="App">
       <Header />
+      <MobileHeader />
       <Banner />
       <Categories />
       <Concept />
