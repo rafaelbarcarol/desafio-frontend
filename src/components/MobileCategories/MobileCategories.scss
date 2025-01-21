@@ -1,0 +1,33 @@
+.mobile-categories {
+  display: none;
+  padding: 32px 16px 48px 16px;
+  gap: 16px;
+
+  &__title {
+    padding-left: 10px;
+    margin-bottom: 10px;
+  }
+
+  &__item {
+    outline: none;
+    padding: 10px;
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    p {
+      margin-top: 5px;
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 19.07px;
+      color: #1d1d1d;
+    }
+  }
+
+  @media (max-width: 910px) {
+    display: block;
+  }
+}

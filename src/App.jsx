@@ -9,15 +9,17 @@ import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import MobileHeader from "./components/MobileHeader/MobileHeader";
 import MobileBanner from "./components/MobileBanner/MobileBanner";
+import MobileCategories from "./components/MobileCategories/MobileCategories";
 
 function App() {
   return (
     <div className="App">
       <Header />
       <MobileHeader />
-      <MobileBanner />
       <Banner />
+      <MobileBanner />
       <Categories />
+      <MobileCategories />
       <Concept />
       <Products />
       <News />
