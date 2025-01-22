@@ -55,8 +55,6 @@ const Header = () => {
   const closeCepModal = (newCity) => {
     if (newCity) {
       setCity(newCity);
-    } else {
-      setCity("São Paulo");
     }
     setIsCepModalOpen(false);
   };

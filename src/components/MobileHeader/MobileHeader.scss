@@ -11,6 +11,17 @@
     color: #fff;
     background: #b11b26;
     padding: 10px 24px;
+
+    .mobile-header-city {
+      span {
+        text-decoration: underline;
+      }
+    }
+
+    .mobile-header-change {
+      text-decoration: underline;
+      cursor: pointer;
+    }
   }
 
   &__options {

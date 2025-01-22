@@ -73,6 +73,8 @@
     transition: 0.3s all ease;
 
     a {
+      display: flex;
+      text-wrap-mode: nowrap;
       padding: 12px 24px 12px 24px;
       text-decoration: none;
       color: #fff;

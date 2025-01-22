@@ -9,11 +9,14 @@ import logoBlack from "../../assets/images/logo-black.svg";
 import close from "../../assets/images/close.svg";
 import headerShoes from "../../assets/images/header-shoes.png";
 import arrowRight from "../../assets/images/arrow-to-right.png";
+import CepModal from "../CepModal/CepModal";
 
 const MobileHeader = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isMenuActive, setIsMenuActive] = useState(false);
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
+  const [isCepModalOpen, setIsCepModalOpen] = useState(false);
+  const [city, setCity] = useState("São Paulo");
 
   const handleScroll = () => {
     if (window.scrollY > 0) {
@@ -31,6 +34,17 @@ const MobileHeader = () => {
     setIsAccordionOpen(!isAccordionOpen);
   };
 
+  const openCepModal = () => {
+    setIsCepModalOpen(true);
+  };
+
+  const closeCepModal = (newCity) => {
+    setIsCepModalOpen(false);
+    if (newCity) {
+      setCity(newCity);
+    }
+  };
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
 
@@ -41,6 +55,7 @@ const MobileHeader = () => {
 
   return (
     <div className="mobile-header">
+      {isCepModalOpen && <CepModal closeModal={closeCepModal} />}
       <div
         className={`mobile-header__menu js-mobile-header-menu ${
           isMenuActive ? "active" : ""
@@ -112,8 +127,12 @@ const MobileHeader = () => {
         </div>
       </div>
       <div className="mobile-header__localization">
-        <p>Você está em: São Paulo</p>
-        <p>Alterar</p>
+        <p className="mobile-header-city">
+          Você está em: <span>{city}</span>
+        </p>
+        <p className="mobile-header-change" onClick={openCepModal}>
+          Alterar
+        </p>
       </div>
       <div className={`mobile-header__options ${scrolled ? "active" : ""}`}>
         <div className="options__left">
