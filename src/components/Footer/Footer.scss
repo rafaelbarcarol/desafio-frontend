@@ -120,6 +120,38 @@
     }
   }
 
+  &__coupon {
+    background: #ffe9dc;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding-bottom: 24px;
+
+    button {
+      background: #b11b26;
+      padding: 6px;
+      width: 300px;
+      height: 46px;
+      border: 1px solid transparent;
+      outline: none;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 19.07px;
+      color: #fff;
+      transition: 0.3s all ease;
+      border-radius: 100px;
+
+      &:hover {
+        background: #fff;
+        border: 1px solid #b11b26;
+        color: #b11b26;
+        cursor: pointer;
+      }
+    }
+  }
+
   @media (max-width: 910px) {
     overflow: hidden;
     .footer {
@@ -145,6 +177,9 @@
             max-width: 100%;
           }
         }
+      }
+      &__coupon {
+        flex-direction: column;
       }
     }
   }

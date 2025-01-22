@@ -1,8 +1,8 @@
 import React from "react";
 import Slider from "react-slick";
 import "./Banner.scss";
-import firstMainBannerRight from "../../assets/images/main_banner_1_right.png";
-import firstMainBannerLeft from "../../assets/images/main_banner_1_left.png";
+import firstMainBanner from "../../assets/images/banner-home-desktop-1.png";
+import secondMainBanner from "../../assets/images/banner-home-desktop-2.png";
 
 const settings = {
   dots: true,
@@ -21,39 +21,30 @@ const settings = {
 
 const banners = [
   {
-    leftImage: firstMainBannerLeft,
-    rightImage: firstMainBannerRight,
-    altLeft: "Simple and beauty",
-    altRight: "Coleção Bebecê Outono/Inverno 2024",
+    image: firstMainBanner,
+    altDescription: "Simple and beauty",
   },
   {
-    leftImage: firstMainBannerLeft,
-    rightImage: firstMainBannerRight,
-    altLeft: "Imagem do Banner 2",
-    altRight: "Coleção Bebecê Primavera/Verão 2024",
+    image: secondMainBanner,
+    altDescription: "Imagem do Banner 2",
   },
 ];
 
 const Banner = () => (
   <div className="banner">
-    <div className="banner__cta">
-      <button className="cta-button">Conheça Agora</button>
-    </div>
+    <button href="/conheca" className="banner__cta">
+      <a href="/conheca" className="cta-button">
+        Conheça Agora
+      </a>
+    </button>
 
     <Slider {...settings}>
       {banners.map((banner, index) => (
         <div key={index} className="banner__content">
-          <div className="banner__content__left">
+          <div className="banner__content__inner">
             <img
-              src={banner.leftImage}
-              alt={banner.altLeft}
-              className="banner-image"
-            />
-          </div>
-          <div className="banner__content__right">
-            <img
-              src={banner.rightImage}
-              alt={banner.altRight}
+              src={banner.image}
+              alt={banner.altDescription}
               className="banner-image"
             />
           </div>
