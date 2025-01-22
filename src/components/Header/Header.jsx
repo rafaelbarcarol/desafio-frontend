@@ -9,12 +9,15 @@ import headerBoots from "../../assets/images/header-boots.png";
 import headerSandals from "../../assets/images/header-sandals.png";
 import headerScarpin from "../../assets/images/header-scarpins.png";
 import headerShoes from "../../assets/images/header-shoes.png";
+import CepModal from "../CepModal/CepModal";
 
 const Header = () => {
   const [isScrollingDown, setIsScrollingDown] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProductMenuActive, setIsProductMenuActive] = useState(false);
   const [hoveredItem, setHoveredItem] = useState(null);
+  const [isCepModalOpen, setIsCepModalOpen] = useState(false);
+  const [city, setCity] = useState("São Paulo");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,12 +48,29 @@ const Header = () => {
     return hoveredItem === item ? "active" : "";
   };
 
+  const openCepModal = () => {
+    setIsCepModalOpen(true);
+  };
+
+  const closeCepModal = (newCity) => {
+    if (newCity) {
+      setCity(newCity);
+    } else {
+      setCity("São Paulo");
+    }
+    setIsCepModalOpen(false);
+  };
+
   return (
     <div className="header">
       <div className="header__upper">
         <div className="header__upper__localization">
-          <p>Você está em: São Paulo</p>
-          <p>Alterar</p>
+          <p className="localization-city">
+            Você está em: <span>{city}</span>
+          </p>
+          <p className="change-city" onClick={openCepModal}>
+            Alterar
+          </p>
         </div>
       </div>
       <div
@@ -191,6 +211,8 @@ const Header = () => {
           />
         </div>
       </div>
+
+      {isCepModalOpen && <CepModal closeModal={closeCepModal} />}
     </div>
   );
 };

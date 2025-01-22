@@ -16,8 +16,19 @@
       align-items: center;
       justify-content: center;
       height: 100%;
-      gap: 8px;
+      gap: 16px;
       color: #fff;
+
+      .localization-city {
+        span {
+          text-decoration: underline;
+        }
+      }
+
+      .change-city {
+        text-decoration: underline;
+        cursor: pointer;
+      }
     }
   }
 
