@@ -66,6 +66,16 @@ const Products = () => {
   const isFirstPage = activeIndex === 0;
   const isLastPage = activeIndex === totalDots - 1;
 
+  const generateSlug = (name) => {
+    return name
+      .toLowerCase()
+      .trim()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9ç ]/g, "")
+      .replace(/\s+/g, "-");
+  };
+
   const calculateDiscountPercentage = (originalPrice, discountedPrice) => {
     return Math.round(
       ((originalPrice - discountedPrice) / originalPrice) * 100
@@ -86,10 +96,14 @@ const Products = () => {
             : null;
 
           return (
-            <div className="products__item" key={product.id}>
+            <a
+              href={`/produto/${generateSlug(product.name)}`}
+              className="products__item"
+              key={product.id}
+            >
               <div className="products__item__image-container">
                 <img
-                  className="products__item__image"
+                  className="products__item__image product-image"
                   src={product.image}
                   alt={product.name}
                 />
@@ -120,7 +134,7 @@ const Products = () => {
                   </p>
                 )}
               </div>
-            </div>
+            </a>
           );
         })}
       </Slider>

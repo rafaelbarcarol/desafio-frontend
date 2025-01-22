@@ -12,7 +12,7 @@ const News = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [slidesToShow, setSlidesToShow] = useState(3);
 
-  const products = [
+  const news = [
     {
       id: 1,
       image: blogImage1,
@@ -102,7 +102,16 @@ const News = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const totalDots = Math.ceil(products.length / slidesToShow);
+  const totalDots = Math.ceil(news.length / slidesToShow);
+
+  const generateSlug = (title) => {
+    return title
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .replace(/\s+/g, "-")
+      .replace(/[^\w-]+/g, "");
+  };
 
   const sliderSettings = {
     dots: true,
@@ -138,17 +147,22 @@ const News = () => {
         <span>Fique por dentro de tudo que acontece na Bebecê.</span>
       </div>
       <Slider {...sliderSettings} ref={sliderRef}>
-        {products.map((product) => (
-          <div className="news__item" key={product.id}>
-            <img
-              className="news__item__image"
-              src={product.image}
-              alt={product.title}
-            />
-            <h3 className="news__item__text title">{product.title}</h3>
-            <h4 className="news__item__text subtitle">{product.subtitle}</h4>
-            <a href="/novidades" className="news__item__text cta">
-              {product.cta}
+        {news.map((newItem) => (
+          <div className="news__item" key={newItem.id}>
+            <div className="image-wrapper">
+              <img
+                className="news__item__image"
+                src={newItem.image}
+                alt={newItem.title}
+              />
+            </div>
+            <h3 className="news__item__text title">{newItem.title}</h3>
+            <h4 className="news__item__text subtitle">{newItem.subtitle}</h4>
+            <a
+              href={`/noticias/${generateSlug(newItem.title)}`}
+              className="news__item__text cta"
+            >
+              {newItem.cta}
             </a>
           </div>
         ))}

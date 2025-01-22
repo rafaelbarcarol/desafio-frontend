@@ -63,18 +63,29 @@
 
   &__item {
     outline: none;
+    text-decoration: none;
+
     &__image {
       background: #f7f7f7;
       padding: 10px;
       width: 100%;
+      border: 1px solid transparent;
+      transition: 0.3s all ease;
+    }
+
+    &__name {
+      color: #1d1d1d;
+      font-weight: 300;
+      padding-bottom: 5px;
     }
 
     &__image-container {
       position: relative;
+      padding-bottom: 5px;
 
       .discount-badge {
         position: absolute;
-        bottom: 10px;
+        bottom: 15px;
         left: 10px;
         z-index: 2;
         color: #b11b26;
@@ -94,6 +105,13 @@
       }
       &--original {
         font-size: 16px;
+        color: #1d1d1d;
+      }
+    }
+
+    &:hover {
+      .product-image {
+        border: 1px solid #b11b26;
       }
     }
   }

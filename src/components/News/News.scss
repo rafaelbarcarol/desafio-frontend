@@ -74,20 +74,23 @@
     gap: 20px;
     border: none;
     outline: none;
+    text-decoration: none;
+    padding: 10px;
+
+    .image-wrapper {
+      overflow: hidden;
+    }
     &__image {
       background: #f7f7f7;
-      padding: 10px;
       width: 100%;
-      margin-bottom: 4px;
+      height: 100%;
+      transition: 0.3s all ease;
     }
     &__text {
-      font-family: Open Sans;
+      margin-top: 4px;
       font-size: 16px;
       font-weight: 300;
       line-height: 18.78px;
-      text-align: left;
-      text-underline-position: from-font;
-      text-decoration-skip-ink: none;
       &.title {
         font-size: 22px;
         font-weight: 400;
@@ -107,6 +110,14 @@
         text-decoration-line: underline;
         text-decoration-style: solid;
         color: #1d1d1d;
+      }
+    }
+
+    &:hover {
+      .image-wrapper {
+        img {
+          transform: scale(1.2);
+        }
       }
     }
   }

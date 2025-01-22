@@ -21,15 +21,31 @@
     .item {
       display: flex;
       flex-direction: column;
-      img {
+      text-decoration: none;
+
+      .image-overflow {
+        overflow: hidden;
         height: 47.6vh;
-        width: 100%;
-        object-fit: cover;
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+          border-radius: 4px;
+          transition: 0.3s all ease;
+        }
       }
 
       &__category {
         color: #1d1d1d;
         margin-top: 10px;
+      }
+
+      &:hover {
+        .image-overflow {
+          img {
+            transform: scale(1.1);
+          }
+        }
       }
     }
   }
