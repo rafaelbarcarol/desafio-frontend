@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Slider from "react-slick";
 import { ReactComponent as ArrowPrev } from "../../assets/images/arrow-prev.svg";
 import { ReactComponent as ArrowNext } from "../../assets/images/arrow-next.svg";
@@ -10,6 +10,7 @@ import "./News.scss";
 const News = () => {
   const sliderRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [slidesToShow, setSlidesToShow] = useState(3);
 
   const products = [
     {
@@ -86,7 +87,21 @@ const News = () => {
     },
   ];
 
-  const slidesToShow = 3;
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 910) {
+        setSlidesToShow(1);
+      } else {
+        setSlidesToShow(3);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const totalDots = Math.ceil(products.length / slidesToShow);
 
   const sliderSettings = {
@@ -97,6 +112,15 @@ const News = () => {
     slidesToScroll: slidesToShow,
     beforeChange: (current, next) =>
       setActiveIndex(Math.floor(next / slidesToShow)),
+    responsive: [
+      {
+        breakpoint: 910,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   const handleDotClick = (index) => {
@@ -109,6 +133,10 @@ const News = () => {
   return (
     <div className="news">
       <h2 className="news__title">Lançamentos</h2>
+      <div className="news__mobile__title">
+        <p>Conheça mais</p>
+        <span>Fique por dentro de tudo que acontece na Bebecê.</span>
+      </div>
       <Slider {...sliderSettings} ref={sliderRef}>
         {products.map((product) => (
           <div className="news__item" key={product.id}>
@@ -119,7 +147,9 @@ const News = () => {
             />
             <h3 className="news__item__text title">{product.title}</h3>
             <h4 className="news__item__text subtitle">{product.subtitle}</h4>
-            <p className="news__item__text cta">{product.cta}</p>
+            <a href="/novidades" className="news__item__text cta">
+              {product.cta}
+            </a>
           </div>
         ))}
       </Slider>
