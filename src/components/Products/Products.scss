@@ -69,6 +69,18 @@
       width: 100%;
     }
 
+    &__image-container {
+      position: relative;
+
+      .discount-badge {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        z-index: 2;
+        color: #b11b26;
+      }
+    }
+
     &__price {
       &.flex {
         display: flex;
@@ -84,5 +96,9 @@
         font-size: 16px;
       }
     }
+  }
+
+  @media (max-width: 910px) {
+    display: none;
   }
 }

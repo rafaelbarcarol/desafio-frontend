@@ -66,40 +66,63 @@ const Products = () => {
   const isFirstPage = activeIndex === 0;
   const isLastPage = activeIndex === totalDots - 1;
 
+  const calculateDiscountPercentage = (originalPrice, discountedPrice) => {
+    return Math.round(
+      ((originalPrice - discountedPrice) / originalPrice) * 100
+    );
+  };
+
   return (
     <div className="products">
       <h2 className="products__title">Lançamentos</h2>
       <Slider {...sliderSettings} ref={sliderRef}>
-        {products.map((product) => (
-          <div className="products__item" key={product.id}>
-            <img
-              className="products__item__image"
-              src={product.image}
-              alt={product.name}
-            />
-            <p className="products__item__name">{product.name}</p>
-            <div
-              className={`products__item__price ${
-                product.price.isDiscount ? "flex" : ""
-              }`}
-            >
-              {product.price.isDiscount ? (
-                <>
-                  <p className="products__item__price--discount">
-                    {formatCurrency(product.price.isDiscount)}
-                  </p>
+        {products.map((product) => {
+          const isDiscounted = product.price.isDiscount;
+          const discountPercentage = isDiscounted
+            ? calculateDiscountPercentage(
+                product.price.amount,
+                product.price.isDiscount
+              )
+            : null;
+
+          return (
+            <div className="products__item" key={product.id}>
+              <div className="products__item__image-container">
+                <img
+                  className="products__item__image"
+                  src={product.image}
+                  alt={product.name}
+                />
+                {isDiscounted && (
+                  <div className="discount-badge">
+                    {discountPercentage}% OFF
+                  </div>
+                )}
+              </div>
+              <p className="products__item__name">{product.name}</p>
+              <div
+                className={`products__item__price ${
+                  isDiscounted ? "flex" : ""
+                }`}
+              >
+                {isDiscounted ? (
+                  <>
+                    <p className="products__item__price--discount">
+                      {formatCurrency(product.price.amount)}
+                    </p>
+                    <p className="products__item__price--original">
+                      {formatCurrency(product.price.isDiscount)}
+                    </p>
+                  </>
+                ) : (
                   <p className="products__item__price--original">
                     {formatCurrency(product.price.amount)}
                   </p>
-                </>
-              ) : (
-                <p className="products__item__price--original">
-                  {formatCurrency(product.price.amount)}
-                </p>
-              )}
+                )}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </Slider>
 
       <div className="custom-dots-container">

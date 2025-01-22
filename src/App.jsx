@@ -10,6 +10,7 @@ import Header from "./components/Header/Header";
 import MobileHeader from "./components/MobileHeader/MobileHeader";
 import MobileBanner from "./components/MobileBanner/MobileBanner";
 import MobileCategories from "./components/MobileCategories/MobileCategories";
+import MobileProducts from "./components/MobileProducts/MobileProducts";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       <MobileCategories />
       <Concept />
       <Products />
+      <MobileProducts />
       <News />
       <Footer />
     </div>
