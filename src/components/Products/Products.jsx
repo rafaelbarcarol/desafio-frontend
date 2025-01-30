@@ -8,7 +8,7 @@ import addToCart from "../../assets/images/add-to-cart.svg";
 import AddToCartModal from "../AddToCartModal/AddToCartModal";
 import Cart from "../Cart/Cart";
 
-const Products = () => {
+const Products = ({ cartClicked, onAddToCart }) => {
   const [products, setProducts] = useState([]);
   const [isCartVisible, setIsCartVisible] = useState(false);
   const [cartItems, setCartItems] = useState([]);
@@ -18,6 +18,13 @@ const Products = () => {
   const [selectedSize, setSelectedSize] = useState(34);
   const [isAddCartModalActive, setIsAddCartModalActive] = useState(false);
   const slidesToShow = 5;
+
+  useEffect(() => {
+    if (cartClicked) {
+      console.log("O carrinho foi clicado - Ação no Products");
+      setIsCartVisible(true);
+    }
+  }, [cartClicked]);
 
   const handleAddToCart = (product) => {
     if (!selectedSize) {
@@ -38,9 +45,12 @@ const Products = () => {
     localStorage.setItem("cart", JSON.stringify(existingCart));
 
     setCartItems(existingCart);
-
     setIsCartVisible(true);
     closeModal();
+
+    if (onAddToCart) {
+      onAddToCart(existingCart.length);
+    }
   };
 
   const handleCloseCart = () => {
@@ -55,6 +65,10 @@ const Products = () => {
     localStorage.setItem("cart", JSON.stringify(existingCart));
 
     setCartItems(existingCart);
+
+    if (onAddToCart) {
+      onAddToCart(existingCart.length);
+    }
   };
 
   const handleSizeClick = (size) => {

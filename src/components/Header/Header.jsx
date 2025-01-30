@@ -11,13 +11,17 @@ import headerScarpin from "../../assets/images/header-scarpins.png";
 import headerShoes from "../../assets/images/header-shoes.png";
 import CepModal from "../CepModal/CepModal";
 
-const Header = () => {
+const Header = ({ onCartClick, cartCount }) => {
   const [isScrollingDown, setIsScrollingDown] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProductMenuActive, setIsProductMenuActive] = useState(false);
   const [hoveredItem, setHoveredItem] = useState(null);
   const [isCepModalOpen, setIsCepModalOpen] = useState(false);
   const [city, setCity] = useState("São Paulo");
+
+  const handleCartClick = () => {
+    onCartClick();
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -140,6 +144,7 @@ const Header = () => {
               className={`header-right-icon shopping js-header-right-icon ${
                 isMenuOpen ? "active" : ""
               }`}
+              onClick={handleCartClick}
             >
               <img src={thirdIcon} alt="ícone de compras" />
               <div
@@ -147,7 +152,7 @@ const Header = () => {
                   isMenuOpen ? "active" : ""
                 }`}
               >
-                0
+                {cartCount}
               </div>
             </li>
           </ul>

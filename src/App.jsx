@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.scss";
 import Banner from "./components/Banner/Banner";
 import Categories from "./components/Categories/Categories";
@@ -14,9 +14,25 @@ import MobileProducts from "./components/MobileProducts/MobileProducts";
 import Cart from "./components/Cart/Cart";
 
 function App() {
+  const [cartClicked, setCartClicked] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
+
+  const handleCartClick = () => {
+    setCartClicked(true);
+    console.log("Carrinho foi clicado");
+
+    setTimeout(() => {
+      setCartClicked(false);
+    }, 100);
+  };
+
+  const handleAddToCart = (newCartCount) => {
+    setCartCount(newCartCount);
+  };
+
   return (
     <div className="App">
-      <Header />
+      <Header onCartClick={handleCartClick} cartCount={cartCount} />
       <MobileHeader />
       <Cart />
       <Banner />
@@ -24,7 +40,7 @@ function App() {
       <Categories />
       <MobileCategories />
       <Concept />
-      <Products />
+      <Products cartClicked={cartClicked} onAddToCart={handleAddToCart} />
       <MobileProducts />
       <News />
       <Footer />
