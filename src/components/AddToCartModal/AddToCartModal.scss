@@ -1,3 +1,21 @@
+.layer-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background: rgba($color: #000000, $alpha: 0.5);
+  z-index: 2;
+  opacity: 0;
+  transition: 0.3s all ease;
+  pointer-events: none;
+
+  &.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
 .add-modal {
   position: fixed;
   top: 50%;
@@ -15,11 +33,13 @@
 
   &__image {
     background: #f7f7f7;
-    height: 100%;
+    width: 433px;
+    height: 433px;
 
     img {
       height: 100%;
       width: 100%;
+      object-fit: cover;
     }
   }
 
@@ -77,12 +97,48 @@
         }
       }
     }
+    &__button {
+      display: flex;
+      align-items: center;
+      background: #b11b26;
+      padding: 6px;
+      gap: 10px;
+      border: 1px solid #b11b26;
+      justify-content: center;
+      min-height: 46px;
+      cursor: pointer;
+      transition: 0.3s all ease;
+
+      p {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 19.07px;
+        color: #fff;
+      }
+
+      &:hover {
+        background: #fff;
+
+        p {
+          color: #b11;
+        }
+
+        svg {
+          path {
+            fill: #b11b26;
+          }
+        }
+      }
+    }
   }
 
   &__close {
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    padding: 8px;
+    background: #eeeeee;
   }
 
   &.active {

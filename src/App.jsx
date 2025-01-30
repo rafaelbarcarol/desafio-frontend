@@ -11,12 +11,14 @@ import MobileHeader from "./components/MobileHeader/MobileHeader";
 import MobileBanner from "./components/MobileBanner/MobileBanner";
 import MobileCategories from "./components/MobileCategories/MobileCategories";
 import MobileProducts from "./components/MobileProducts/MobileProducts";
+import Cart from "./components/Cart/Cart";
 
 function App() {
   return (
     <div className="App">
       <Header />
       <MobileHeader />
+      <Cart />
       <Banner />
       <MobileBanner />
       <Categories />

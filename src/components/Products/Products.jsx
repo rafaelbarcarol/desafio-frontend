@@ -6,15 +6,56 @@ import { ReactComponent as ArrowPrev } from "../../assets/images/arrow-prev.svg"
 import { ReactComponent as ArrowNext } from "../../assets/images/arrow-next.svg";
 import addToCart from "../../assets/images/add-to-cart.svg";
 import AddToCartModal from "../AddToCartModal/AddToCartModal";
+import Cart from "../Cart/Cart";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
+  const [isCartVisible, setIsCartVisible] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
   const sliderRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedProduct, setSelectedProduct] = useState(null);
-  const [selectedSize, setSelectedSize] = useState(null);
+  const [selectedSize, setSelectedSize] = useState(34);
   const [isAddCartModalActive, setIsAddCartModalActive] = useState(false);
   const slidesToShow = 5;
+
+  const handleAddToCart = (product) => {
+    if (!selectedSize) {
+      alert("Por favor, selecione o tamanho!");
+      return;
+    }
+
+    const cartItem = {
+      image: selectedProduct?.image,
+      name: selectedProduct?.name,
+      size: selectedSize,
+      price: selectedProduct?.price,
+    };
+
+    const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
+    existingCart.push(cartItem);
+
+    localStorage.setItem("cart", JSON.stringify(existingCart));
+
+    setCartItems(existingCart);
+
+    setIsCartVisible(true);
+    closeModal();
+  };
+
+  const handleCloseCart = () => {
+    setIsCartVisible(false);
+  };
+
+  const handleRemoveFromCart = (index) => {
+    const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    existingCart.splice(index, 1);
+
+    localStorage.setItem("cart", JSON.stringify(existingCart));
+
+    setCartItems(existingCart);
+  };
 
   const handleSizeClick = (size) => {
     if (selectedProduct?.sizes?.includes(size)) {
@@ -47,6 +88,12 @@ const Products = () => {
 
     fetchProducts();
   }, []);
+
+  useEffect(() => {
+    if (isAddCartModalActive) {
+      setIsCartVisible(false);
+    }
+  }, [isAddCartModalActive]);
 
   const formatCurrency = (amount) => {
     return new Intl.NumberFormat("pt-BR", {
@@ -184,8 +231,16 @@ const Products = () => {
           handleSizeClick={handleSizeClick}
           isAddCartModalActive={isAddCartModalActive}
           closeModal={closeModal}
+          handleAddToCart={handleAddToCart}
         />
       )}
+
+      <Cart
+        isVisible={isCartVisible}
+        cartItems={cartItems}
+        onRemoveFromCart={handleRemoveFromCart}
+        onCloseCart={handleCloseCart}
+      />
     </div>
   );
 };

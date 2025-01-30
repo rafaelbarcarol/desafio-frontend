@@ -1,0 +1,41 @@
+.cart {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 30vw;
+  background: #fff;
+  z-index: 10;
+  transform: translateX(125%);
+  transition: 0.5s all ease;
+  pointer-events: none;
+
+  &__item {
+    display: flex;
+
+    &__name {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 19.07px;
+      color: #1d1d1d;
+    }
+
+    &__size {
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 16.34px;
+      color: #8a8a8a;
+    }
+
+    &__price {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 21.79px;
+    }
+  }
+
+  &.show {
+    transform: translateX(0);
+    pointer-events: all;
+  }
+}
