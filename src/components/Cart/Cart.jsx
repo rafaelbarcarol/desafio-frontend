@@ -9,6 +9,12 @@ const Cart = ({ isVisible, cartItems = [], onRemoveFromCart, onCloseCart }) => {
     }).format(amount);
   };
 
+  const calculateTotal = () => {
+    return cartItems.reduce((total, item) => {
+      return total + (item.price.isDiscount || item.price.amount);
+    }, 0);
+  };
+
   return (
     <div className={`cart ${isVisible ? "show" : ""}`}>
       <h2>Carrinho</h2>
@@ -46,6 +52,11 @@ const Cart = ({ isVisible, cartItems = [], onRemoveFromCart, onCloseCart }) => {
         </div>
       )}
       <div className="cart__footer">
+        {cartItems.length > 0 && (
+          <p className="cart__total">
+            Total: {formatCurrency(calculateTotal())}
+          </p>
+        )}
         <button className="cart__checkout">Finalizar Compra</button>
       </div>
     </div>

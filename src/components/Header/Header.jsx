@@ -19,6 +19,13 @@ const Header = ({ onCartClick, cartCount }) => {
   const [isCepModalOpen, setIsCepModalOpen] = useState(false);
   const [city, setCity] = useState("São Paulo");
 
+  useEffect(() => {
+    const storedCity = sessionStorage.getItem("city");
+    if (storedCity) {
+      setCity(storedCity);
+    }
+  }, []);
+
   const handleCartClick = () => {
     onCartClick();
   };

@@ -18,6 +18,13 @@ const MobileHeader = () => {
   const [isCepModalOpen, setIsCepModalOpen] = useState(false);
   const [city, setCity] = useState("São Paulo");
 
+  useEffect(() => {
+    const storedCity = sessionStorage.getItem("city");
+    if (storedCity) {
+      setCity(storedCity);
+    }
+  }, []);
+
   const handleScroll = () => {
     if (window.scrollY > 0) {
       setScrolled(true);
