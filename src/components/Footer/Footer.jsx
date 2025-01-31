@@ -24,19 +24,20 @@ const SocialIcons = socialLinks.map(({ name, url, icon }) => (
 const Footer = () => {
   const [email, setEmail] = useState("");
   const [isCouponVisible, setIsCouponVisible] = useState(false);
-  const [isButtonCopied, setIsButtonCopied] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
+
+  const handleCopyCoupon = () => {
+    const couponText = document.querySelector(".js-coupon-text").textContent;
+
+    navigator.clipboard.writeText(couponText).then(() => {
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 3000);
+    });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsCouponVisible(true);
-  };
-
-  const copyCouponToClipboard = () => {
-    navigator.clipboard.writeText("bebece10");
-    setIsButtonCopied(true);
-    setTimeout(() => {
-      setIsButtonCopied(false);
-    }, 3000);
   };
 
   return (
@@ -58,12 +59,16 @@ const Footer = () => {
       </div>
       {isCouponVisible && (
         <div className="footer__coupon">
-          <p>
-            Seu cupom de desconto é: <strong>bebece10</strong>
-          </p>
-          <button onClick={copyCouponToClipboard} disabled={isButtonCopied}>
-            {isButtonCopied ? "Copiado!" : "Copiar cupom"}
-          </button>
+          <p>Utilize este cupom e garanta seu desconto!</p>
+          <div className="footer__coupon__wrapper">
+            <div className="footer__coupon__left js-coupon-text">BEMVINDA</div>
+            <div
+              className="footer__coupon__right js-copy-to-clipboard"
+              onClick={handleCopyCoupon}
+            >
+              {isCopied ? "Copiado!" : "Copiar"}
+            </div>
+          </div>
         </div>
       )}
       <div className="footer__lower">

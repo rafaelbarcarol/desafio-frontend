@@ -126,29 +126,41 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 30px;
     padding-bottom: 24px;
+    gap: 30px;
 
-    button {
-      background: #b11b26;
-      padding: 6px;
-      width: 300px;
-      height: 46px;
-      border: 1px solid transparent;
-      outline: none;
+    &__wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &__left,
+    &__right {
       font-size: 14px;
-      font-weight: 400;
       line-height: 19.07px;
-      color: #fff;
-      transition: 0.3s all ease;
-      border-radius: 100px;
+      font-weight: 400;
+      text-align: center;
+      padding: 12px 6px;
+    }
 
-      &:hover {
-        background: #fff;
-        border: 1px solid #b11b26;
-        color: #b11b26;
-        cursor: pointer;
-      }
+    &__left {
+      background: #fff;
+      border-top-left-radius: 100px;
+      border-bottom-left-radius: 100px;
+      color: #b11b26;
+      width: 195.8px;
+      border: 1px dashed #cecece;
+    }
+
+    &__right {
+      background: #b11b26;
+      border-top-right-radius: 100px;
+      border-bottom-right-radius: 100px;
+      color: #ffffff;
+      width: 160.2px;
+      cursor: pointer;
+      text-decoration: underline;
     }
   }
 
@@ -180,6 +192,20 @@
       }
       &__coupon {
         flex-direction: column;
+        padding-bottom: 30px;
+
+        p {
+          max-width: 65%;
+          text-align: center;
+        }
+
+        &__left {
+          max-width: 40vw;
+        }
+
+        &__right {
+          max-width: 30vw;
+        }
       }
     }
   }
