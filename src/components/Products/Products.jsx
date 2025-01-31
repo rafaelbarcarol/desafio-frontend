@@ -20,8 +20,12 @@ const Products = ({ cartClicked, onAddToCart }) => {
   const slidesToShow = 5;
 
   useEffect(() => {
+    const storedCartItems = JSON.parse(localStorage.getItem("cart")) || [];
+    setCartItems(storedCartItems);
+  }, []);
+
+  useEffect(() => {
     if (cartClicked) {
-      console.log("O carrinho foi clicado - Ação no Products");
       setIsCartVisible(true);
     }
   }, [cartClicked]);
@@ -37,13 +41,13 @@ const Products = ({ cartClicked, onAddToCart }) => {
       name: selectedProduct?.name,
       size: selectedSize,
       price: selectedProduct?.price,
+      quantity: 1,
     };
 
     const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
     existingCart.push(cartItem);
 
     localStorage.setItem("cart", JSON.stringify(existingCart));
-
     setCartItems(existingCart);
     setIsCartVisible(true);
     closeModal();
@@ -63,7 +67,6 @@ const Products = ({ cartClicked, onAddToCart }) => {
     existingCart.splice(index, 1);
 
     localStorage.setItem("cart", JSON.stringify(existingCart));
-
     setCartItems(existingCart);
 
     if (onAddToCart) {

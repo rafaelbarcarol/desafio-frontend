@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.scss";
 import Banner from "./components/Banner/Banner";
 import Categories from "./components/Categories/Categories";
@@ -11,15 +11,21 @@ import MobileHeader from "./components/MobileHeader/MobileHeader";
 import MobileBanner from "./components/MobileBanner/MobileBanner";
 import MobileCategories from "./components/MobileCategories/MobileCategories";
 import MobileProducts from "./components/MobileProducts/MobileProducts";
-import Cart from "./components/Cart/Cart";
 
 function App() {
   const [cartClicked, setCartClicked] = useState(false);
   const [cartCount, setCartCount] = useState(0);
 
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem("cart"));
+
+    if (storedCart && Array.isArray(storedCart)) {
+      setCartCount(storedCart.length);
+    }
+  }, []);
+
   const handleCartClick = () => {
     setCartClicked(true);
-    console.log("Carrinho foi clicado");
 
     setTimeout(() => {
       setCartClicked(false);
@@ -34,7 +40,6 @@ function App() {
     <div className="App">
       <Header onCartClick={handleCartClick} cartCount={cartCount} />
       <MobileHeader />
-      <Cart />
       <Banner />
       <MobileBanner />
       <Categories />
